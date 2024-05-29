@@ -304,10 +304,10 @@
   margin-top: 35%;
 }
 .whole-cart-window {
+  border: solid greenyellow 1px;
   position: fixed;
   top: 12vh;
   background-color: #fff;
-  border-top: none;
   margin-right: 2%;
 }
 .hide {
