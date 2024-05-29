@@ -250,6 +250,10 @@
 }
 .login {
   margin-left: auto;
+  cursor: pointer;
+}
+.login img:hover {
+  opacity: 0.7;
 }
 :root {
   --after-content: '1';
@@ -259,7 +263,7 @@
     position: absolute;
     left: 64%;
     top: 10%;
-    border:solid 1px blue;
+    border:none;
     padding: 10px 20px;
 }
 .cart-wrapper {
@@ -424,3 +428,4 @@
   text-decoration: line-through; 
   color: #808080;
 }
+

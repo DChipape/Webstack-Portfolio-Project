@@ -1,5 +1,5 @@
-  var currentImageIndex = 0;
-  var imageSources = [
+let currentImageIndex = 0;
+const imageSources = [
   'images/image-product-1.jpg',
   'images/image-product-2.jpg',
   'images/image-product-3.jpg',
@@ -7,193 +7,148 @@
 ];
 
 function changeMainImage(imageSrc) {
-    var mainImage = document.getElementById('mainImage');
-      mainImage.src = imageSrc;
-    }
-
-function hideEnlargedImage() {
-  var mainImage = document.querySelector('.main-image');
-      mainImage.classList.remove('enlarged');
-    }
+  const mainImage = document.getElementById('mainImage');
+  mainImage.src = imageSrc;
+}
 
 function incrementQuantity() {
-  var quantityInput = document.getElementById('quantityInput');
-  var quantity = parseInt(quantityInput.value);
+  const quantityInput = document.getElementById('quantityInput');
+  let quantity = parseInt(quantityInput.value);
   quantityInput.value = quantity + 1;
-  updatePrices(quantity + 1);
+  updateTotalPrice(quantity + 1);
 }
 
 function decrementQuantity() {
-  var quantityInput = document.getElementById('quantityInput');
-  var quantity = parseInt(quantityInput.value);
+  const quantityInput = document.getElementById('quantityInput');
+  let quantity = parseInt(quantityInput.value);
   if (quantity > 1) {
     quantityInput.value = quantity - 1;
-    updatePrices(quantity - 1);
+    updateTotalPrice(quantity - 1);
   }
-}
-function updatePrices(quantity) {
-  updateTotalPrice(quantity);
-  updateCartContent();
 }
 
 function updateTotalPrice(quantity) {
-  var totalPriceElement = document.getElementById('totalPrice');
-  var totalPrice = quantity * 125.00;
-  totalPriceElement.textContent = '$' + totalPrice.toFixed(2);
-
-  var discountPriceElement = document.getElementById('discountPrice');
-  var originalPriceElement = document.getElementById('originalPrice');
-
-  // 50% discount
-  var discountedPrice = totalPrice * 0.5;
-  discountPriceElement.textContent = '$' + discountedPrice.toFixed(2);
-
-  var originalPrice = 250.00;
-  originalPriceElement.textContent = '$' + originalPrice.toFixed(2);
+  const discountPriceElement = document.getElementById('discountPrice');
+  const totalPrice = quantity * 125.00;
+  discountPriceElement.textContent = '$' + totalPrice.toFixed(2);
 }
-var cartItems = []; // Array that store items in the cart
+
+const cartItems = []; // Array to store items in the cart
+
+function addToCart() {
+  const quantityInput = document.getElementById('quantityInput');
+  const quantity = parseInt(quantityInput.value);
+  const newItem = {
+    name: "Fall Limited Edition Sneakers",
+    price: 125.00,
+    quantity: quantity,
+    imageSrc: imageSources[currentImageIndex]
+  };
+  cartItems.push(newItem);
+  updateCartIcon();
+  updateCartContent();
+}
+
+function updateCartIcon() {
+  const cartIcon = document.getElementById('cartIcon');
+  const cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  cartIcon.style.setProperty('--after-content', `'${cartQuantity}'`);
+}
 
 function updateCartContent() {
-  var cartWrapper = document.querySelector('.cart-wrapper');
+  const cartWrapper = document.querySelector('.cart-wrapper');
   cartWrapper.innerHTML = '';
-
-  var totalAmount = 0;
 
   if (cartItems.length === 0) {
     cartWrapper.textContent = 'Your cart is empty.';
   } else {
-    cartItems.forEach(function(item, index) {
-      var cartItem = document.createElement('div');
+    let totalAmount = 0;
+    cartItems.forEach((item, index) => {
+      const cartItem = document.createElement('div');
       cartItem.classList.add('cart-item');
 
-      var image = document.createElement('img');
+      const image = document.createElement('img');
       image.src = item.imageSrc;
-      var details = document.createElement('div');
+
+      const details = document.createElement('div');
       details.classList.add('details');
 
-      var name = document.createElement('p');
+      const name = document.createElement('p');
       name.textContent = item.name;
-      var price = document.createElement('span');
+
+      const price = document.createElement('span');
+      price.classList.add('price');
       price.textContent = '$' + item.price.toFixed(2);
-      var quantity = document.createElement('span');
+
+      const quantity = document.createElement('span');
+      quantity.classList.add('quantiti');
       quantity.textContent = ' x ' + item.quantity;
-      var subtotal = document.createElement('span');
-      subtotal.textContent = '$' + (item.price * item.quantity).toFixed(2); // Calculate subtotal
+
+      const subtotal = document.createElement('span');
+      subtotal.classList.add('subtotal');
+      subtotal.textContent = '$' + (item.price * item.quantity).toFixed(2);
 
       details.appendChild(name);
       details.appendChild(price);
+      details.appendChild(document.createTextNode(' '));
       details.appendChild(quantity);
+      details.appendChild(document.createTextNode(' '));
       details.appendChild(subtotal);
 
-      var cancel = document.createElement('div');
-      cancel.classList.add('cancel');
-      var cancelIcon = document.createElement('img');
-      cancelIcon.src = 'images/icon-delete.svg';
-      cancelIcon.addEventListener('click', function() {
-        removeCartItem(index);
-      });
-      cancel.appendChild(cancelIcon);
+      const deleteBtn = document.createElement('div');
+      deleteBtn.classList.add('delete');
+      const deleteIcon = document.createElement('img');
+      deleteIcon.src = 'images/icon-delete.svg';
+      deleteIcon.addEventListener('click', () => removeCartItem(index));
+      deleteBtn.appendChild(deleteIcon);
 
       cartItem.appendChild(image);
       cartItem.appendChild(details);
-      cartItem.appendChild(cancel);
-
+      cartItem.appendChild(deleteBtn);
       cartWrapper.appendChild(cartItem);
 
-      totalAmount += item.price * item.quantity; // Accumulate total amount
+      totalAmount += item.price * item.quantity;
     });
-  }
 
-  // Update total amount in the cart
-  var totalPriceElement = document.querySelector('.subtotal');
-  totalPriceElement.textContent = '$' + totalAmount.toFixed(2);
-}
-
-
-function toggleCart() {
-  var cartContent = document.querySelector('.cart-content');
-  if (cartContent.classList.contains('visible')) {
-    cartContent.classList.remove('visible');
-  } else {
-    cartContent.classList.add('visible');
-    updateCartContent();
+    const totalElement = document.createElement('div');
+    totalElement.classList.add('total');
+    totalElement.textContent = 'Total: $' + totalAmount.toFixed(2);
+    cartWrapper.appendChild(totalElement);
   }
 }
 
-function addToCart() {
-  var quantityInput = document.getElementById('quantityInput');
-  var quantity = parseInt(quantityInput.value);
-  var totalPrice = quantity * 125.00;
-
-  var newItem = {
-    name: "Fall Limited Edition Sneakers",
-    price: 125.00,
-    quantity: quantity,
-    totalPrice: totalPrice,
-    imageSrc: imageSources[currentImageIndex]
-  };
-  cartItems.push(newItem);
-  updateCartIconClass();
+function removeCartItem(index) {
+  cartItems.splice(index, 1);
+  updateCartIcon();
   updateCartContent();
 }
 
-
-function updateCartIconClass() {
-      var cartIcon = document.getElementById('cartIcon');
-      if (cartItems.length > 0) {
-        cartIcon.classList.add('non-empty');
-      } else {
-        cartIcon.classList.remove('non-empty');
-      }
-    }
-
-document.querySelector('.add-to-cart-btn').addEventListener('click', addToCart);
-document.getElementById('cartIcon').addEventListener('click', toggleCart);
-
-function showCart() {
-  var wholeCartWindow = document.querySelector('.whole-cart-window');
-  wholeCartWindow.classList.remove('hide');
+function toggleCart() {
+  const cartWindow = document.querySelector('.whole-cart-window');
+  cartWindow.classList.toggle('hide');
 }
 
-function closeCartModal() {
-  var wholeCartWindow = document.querySelector('.whole-cart-window');
-  wholeCartWindow.classList.add('hide');
+let isLoggedIn = false;
+
+function toggleLogin() {
+  isLoggedIn = !isLoggedIn;
+  updateLoginStatus();
 }
-function changeMainImage(index) {
-      var mainImage = document.getElementById('mainImage');
-      mainImage.src = imageSources[index];
-    }
-function prevImage() {
-  currentImageIndex = (currentImageIndex - 1 + imageSources.length) % imageSources.length;
-      changeMainImage(imageSources[currentImageIndex]);
-    }
 
-function nextImage() {
-  currentImageIndex = (currentImageIndex + 1) % imageSources.length;
-      changeMainImage(imageSources[currentImageIndex]);
-    }
-    function showLightbox(imageSrc) {
-      var lightbox = document.querySelector('.lightbox');
-      var lightboxImage = document.querySelector('.lightbox-image');
+function updateLoginStatus() {
+  let loginButton = document.querySelector('.login img');
+  if (isLoggedIn) {
+    loginButton.src = 'images/icon-logout.svg';
+    // Add logic here to handle logout actions
+  } else {
+    loginButton.src = 'images/image-avatar.png';
+    // Add logic here to handle login actions
+  }
+}
 
-      imageIndex = imageSources.indexOf(imageSrc);
-      lightboxImage.src = imageSrc;
-      lightbox.style.display = 'block';
-    }
+document.querySelector('.login img').addEventListener('click', function() {
+  window.location.href = 'login.html';
+});
 
-    function closeLightbox() {
-      var lightbox = document.querySelector('.lightbox');
-      lightbox.style.display = 'none';
-    }
-    function showNextImage() {
-      imageIndex = (imageIndex + 1) % imageSources.length;
-      document.querySelector('.lightbox-image').src = imageSources[imageIndex];
-    }
-
-    function showPreviousImage() {
-      imageIndex = (imageIndex - 1 + imageSources.length) % imageSources.length;
-      document.querySelector('.lightbox-image').src = imageSources[imageIndex];
-    }
-    
 
 
