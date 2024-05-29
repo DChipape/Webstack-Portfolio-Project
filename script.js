@@ -54,19 +54,61 @@ function updateTotalPrice(quantity) {
 var cartItems = []; // Array that store items in the cart
 
 function updateCartContent() {
-  var cartContent = document.querySelector('.cart-content');
-  cartContent.innerHTML = '';
+  var cartWrapper = document.querySelector('.cart-wrapper');
+  cartWrapper.innerHTML = '';
+
+  var totalAmount = 0;
 
   if (cartItems.length === 0) {
-    cartContent.textContent = 'Your cart is empty.';
+    cartWrapper.textContent = 'Your cart is empty.';
   } else {
-    cartItems.forEach(function(item) {
-      var listItem = document.createElement('li');
-      listItem.textContent = item.name + ' - $' + item.price + ' x ' + item.quantity;
-      cartContent.appendChild(listItem);
+    cartItems.forEach(function(item, index) {
+      var cartItem = document.createElement('div');
+      cartItem.classList.add('cart-item');
+
+      var image = document.createElement('img');
+      image.src = item.imageSrc;
+      var details = document.createElement('div');
+      details.classList.add('details');
+
+      var name = document.createElement('p');
+      name.textContent = item.name;
+      var price = document.createElement('span');
+      price.textContent = '$' + item.price.toFixed(2);
+      var quantity = document.createElement('span');
+      quantity.textContent = ' x ' + item.quantity;
+      var subtotal = document.createElement('span');
+      subtotal.textContent = '$' + (item.price * item.quantity).toFixed(2); // Calculate subtotal
+
+      details.appendChild(name);
+      details.appendChild(price);
+      details.appendChild(quantity);
+      details.appendChild(subtotal);
+
+      var cancel = document.createElement('div');
+      cancel.classList.add('cancel');
+      var cancelIcon = document.createElement('img');
+      cancelIcon.src = 'images/icon-delete.svg';
+      cancelIcon.addEventListener('click', function() {
+        removeCartItem(index);
+      });
+      cancel.appendChild(cancelIcon);
+
+      cartItem.appendChild(image);
+      cartItem.appendChild(details);
+      cartItem.appendChild(cancel);
+
+      cartWrapper.appendChild(cartItem);
+
+      totalAmount += item.price * item.quantity; // Accumulate total amount
     });
   }
+
+  // Update total amount in the cart
+  var totalPriceElement = document.querySelector('.subtotal');
+  totalPriceElement.textContent = '$' + totalAmount.toFixed(2);
 }
+
 
 function toggleCart() {
   var cartContent = document.querySelector('.cart-content');
@@ -79,14 +121,22 @@ function toggleCart() {
 }
 
 function addToCart() {
-      var newItem = {
-        name: "Sample Item",
-        price: 10,
-        quantity: 1
-      };
-      cartItems.push(newItem);
-      updateCartIconClass();
-    }
+  var quantityInput = document.getElementById('quantityInput');
+  var quantity = parseInt(quantityInput.value);
+  var totalPrice = quantity * 125.00;
+
+  var newItem = {
+    name: "Fall Limited Edition Sneakers",
+    price: 125.00,
+    quantity: quantity,
+    totalPrice: totalPrice,
+    imageSrc: imageSources[currentImageIndex]
+  };
+  cartItems.push(newItem);
+  updateCartIconClass();
+  updateCartContent();
+}
+
 
 function updateCartIconClass() {
       var cartIcon = document.getElementById('cartIcon');

@@ -252,8 +252,12 @@
   margin-left: auto;
 }
 .cart-icon {
-  position: relative;
-  display: inline-block;
+    width: 26% !important;
+    position: absolute;
+    left: 72%;
+    top: 25%;
+    border:solid 1px blue;
+    padding: 10px 20px;
 }
 
 .cart-icon img {
@@ -262,6 +266,9 @@
 .cart-wrapper {
   overflow-y: auto;
   max-height: 350px;
+}
+.cancel {
+  text-align: right;
 }
 .subtotal {
   text-align: right;
@@ -373,6 +380,9 @@
     .nav-btn img {
       width: 30px;
       height: 30px;
+    }
+    .cart-icons{
+      text-align: right;
     }
     .non-empty::after {
       content: '3';
