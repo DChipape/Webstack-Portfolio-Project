@@ -264,11 +264,13 @@
   width: 50px;
 }
 .cart-wrapper {
-  overflow-y: auto;
   max-height: 350px;
 }
-.cancel {
+.delete {
   text-align: right;
+}
+.delete img{
+  transform: scale(0.5);
 }
 .subtotal {
   text-align: right;
@@ -288,7 +290,7 @@
   display: grid;
   grid-template-columns: 3fr 6fr 1fr;
   padding: 5% 2%;
-  border-bottom: solid 1px;
+  border-top: solid 1px lightgray;
 }
 .cart-item img {
   width: 100%;
@@ -296,12 +298,10 @@
 .cart-item .details {
   padding-left: 10%;
 }
-.cart-item .price {
-  display: flex;
-  text-align: left;
-}
-.quantiti {
-  display: flex;
+.cart-item .price .mulsign .quantiti .subtotal {
+  display: block;
+  text-align: right;
+  margin-top: 35%;
 }
 .whole-cart-window {
   position: fixed;
