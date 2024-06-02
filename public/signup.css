@@ -57,7 +57,6 @@
   }
   
   input:focus {
-    background: #00FEF4;
     outline: 2px solid #ffffff;
     color: #000;
     border: 2px solid transparent;
@@ -65,7 +64,7 @@
   
   .submit {
     width: 283px;
-    color: #6e6e6e;
+    color: orangered;
     margin: 10px 1px;
     padding: 10px 12px;
   }
