@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    /*box-size:border-box;*/
+  }
+  
+  body {
+    background: #ffff;
+    font-family: verdana;
+  }
+  
+  #container {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 150px;
+  }
+  
+  .tabs {
+    display: table-cell;
+    width: 40%;
+    background-color: rgba(11, 177, 224, 0.82);
+    padding: 10px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid #ffffff;
+    border-bottom: 0px;
+    position: relative;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .tabs:hover,
+  p {
+    cursor: pointer;
+  }
+  
+  #lt {
+    background-color: rgb(12, 132, 189);
+  }
+  
+  #cont {
+    width: 100%;
+    opacity: 1;
+    height: 300px;
+    background-color: #ffff;
+    border: 2px solid #ffffff;
+  }
+  
+  input {
+    display: block;
+    width: 260px;
+    margin: 10px 1px;
+    padding: 10px;
+    color: black;
+    outline: 2px solid #ffffff;
+  }
+  
+  input:focus {
+    background: #00FEF4;
+    outline: 2px solid #ffffff;
+    color: #000;
+    border: 2px solid transparent;
+  }
+  
+  .submit {
+    width: 283px;
+    color: #6e6e6e;
+    margin: 10px 1px;
+    padding: 10px 12px;
+  }
+  
+  
+  
+  #clear {
+    clear: both;
+  }
+  
+  .comm {
+    position: absolute;
+    visibility: hidden;
+  }
+  
+  #login {
+    visibility: visible;
+  }
+  
+  h3 {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px 0px;
+    font-size: 1.5em;
+    color: #000;
+  }
+  
+  
+  #forgot h3 {
+    display: block;
+    font-size: 15px;
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  #forgot div {
+    margin-top: 30px;
+  }
+  
+  p {
+    padding: 10px 0px;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  p:hover {
+    text-decoration: underline;
+  }
+  
