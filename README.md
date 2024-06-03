@@ -16,7 +16,7 @@ Clone the repository to the local machine:
 
 bash
 Copy code on or repository
-git clone https://github.com/your-username/e-commerce-website.git
+git clone [https://github.com/your-username/e-commerce-website.git](https://github.com/DChipape/Webstack-Portfolio-Project.git)
 Navigate straight to project directory:
 
 bash
