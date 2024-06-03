@@ -9,14 +9,15 @@ HTML Files: Contains the structure of our web page.
 CSS Files: Define the styling for our web page.
 JavaScript Files: Provide the functionality and interactivity to the web pages.
 Images and icons: Store images and icons used in the website.
-JSON Mock API: Simulates backend functionality for user registration, login, and password recovery.
+JSON Mock API: Simulates backend functionality for our user registration, login, and password recovery.
+
 Setup Instructions
-Clone the repository to your local machine:
+Clone the repository to the local machine:
 
 bash
-Copy code
+Copy code on or repository
 git clone https://github.com/your-username/e-commerce-website.git
-Navigate to the project directory:
+Navigate straight to project directory:
 
 bash
 Copy code
