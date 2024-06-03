@@ -1,7 +1,11 @@
 {
   "name": "Webstack-Portfolio-Project",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "",
+=======
+  "description": "In progress...",
+>>>>>>> c8929183edffadf36162b75bc4b085cd1c07c29b
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
