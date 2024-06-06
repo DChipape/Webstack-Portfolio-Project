@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce product page</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"/>
+    <style>
+      /* Add your CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f8f8f8;
+      }
+
+      .logo img {
+        width: 150px;
+      }
+
+      .nav ul {
+        list-style: none;
+        display: flex;
+        padding: 0;
+      }
+
+      .nav ul li {
+        margin: 0 10px;
+      }
+
+      .nav ul li a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      .nav ul li a.active {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .cart-icon img, .login img {
+        width: 30px;
+        cursor: pointer;
+      }
+
+      .container {
+        display: flex;
+        padding: 20px;
+      }
+
+      .big-image {
+        flex: 1;
+        margin-right: 20px;
+      }
+
+      .big-image img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .thumbnails {
+        display: flex;
+        margin-top: 10px;
+      }
+
+      .thumbnail {
+        margin-right: 10px;
+      }
+
+      .thumbnail img {
+        width: 60px;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+
+      .description {
+        flex: 1;
+      }
+
+      .description h4, .description h2 {
+        margin: 0;
+      }
+
+      .description span {
+        display: block;
+        margin-top: 10px;
+        color: #777;
+      }
+
+      .total-price {
+        display: flex;
+        align-items: center;
+      }
+
+      .discounted-price {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .discount {
+        background-color: #ff5722;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+
+      .original-price {
+        text-decoration: line-through;
+        color: #777;
+      }
+
+      .listitem {
+        margin-top: 20px;
+      }
+
+      .quantity {
+        display: flex;
+        align-items: center;
+      }
+
+      .quantity button {
+        background-color: #f8f8f8;
+        border: none;
+        cursor: pointer;
+      }
+
+      .quantity input {
+        width: 50px;
+        text-align: center;
+        border: 1px solid #ddd;
+        margin: 0 10px;
+      }
+
+      .add-to-cart-btn {
+        display: flex;
+        align-items: center;
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      .add-to-cart-btn img {
+        margin-right: 10px;
+      }
+
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .lightbox img {
+        max-width: 80%;
+        max-height: 80%;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      .prev-btn {
+        left: 20px;
+      }
+
+      .next-btn {
+        right: 20px;
+      }
+    </style>
+    <script>
+      // Add your JavaScript here
+      function toggleCart() {
+        const cartWindow = document.querySelector('.whole-cart-window');
+        cartWindow.classList.toggle('hide');
+      }
+
+      function changeMainImage(src) {
+        const mainImage = document.getElementById('mainImage');
+        mainImage.src = src;
+      }
+
+      function decrementQuantity() {
+        const quantityInput = document.getElementById('quantityInput');
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+          quantity--;
+          quantityInput.value = quantity;
+        }
+      }
+
+      function incrementQuantity() {
+        const quantityInput = document.getElementById('quantityInput');
+        let quantity = parseInt(quantityInput.value);
+        quantity++;
+        quantityInput.value = quantity;
+      }
+
+      function addToCart() {
+        const quantityInput = document.getElementById('quantityInput');
+        const quantity = parseInt(quantityInput.value);
+        alert(`${quantity} item(s) added to the cart.`);
+      }
+
+      function closeLightbox() {
+        const lightbox = document.querySelector('.lightbox');
+        lightbox.style.display = 'none';
+      }
+
+      function showPreviousImage() {
+        // Implement previous image functionality
+      }
+
+      function showNextImage() {
+        // Implement next image functionality
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo-nav">
+        <div class="logo" style="margin-right: 20px;">
+          <img src="images/logo.svg" alt="Sneakers logo">
+        </div>
+        <nav class="nav">
+          <ul>
+            <li><a href="#home">Collections</a></li>
+            <li><a href="#men">Men</a></li>
+            <li><a href="#women" class="active">Women</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="icons-login">
+        <div id="cartIcon" class="icons-login" onclick="toggleCart()">
+          <div class="cart-icon">
+            <div class="cart-icons"><img src="images/icon-cart.svg" alt="cart"></div>
+            <div class="whole-cart-window hide">
+              <h3>Cart</h3>
+              <div class="cart-wrapper">
+                <!-- Cart items will be dynamically generated here -->
+              </div>
+              <div class="checkout">Checkout</div>
+            </div>
+          </div>
+          <div class="login">
+            <a href="#login"><img src="images/image-avatar.png" alt="Login"></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <hr>
+    <div class="container">
+      <div class="big-image">
+        <div class="image-content">
+          <img class="main-image" id="mainImage" src="images/image-product-1.jpg" alt="Sneakers" width="150">
+        </div>
+        <div class="thumbnails">
+          <div class="thumbnail" onclick="changeMainImage('images/image-product-1.jpg')">
+            <img src="images/image-product-1-thumbnail.jpg" alt="Thumbnail 1">
+          </div>
+          <div class="thumbnail" onclick="changeMainImage('images/image-product-2.jpg')">
+            <img src="images/image-product-2-thumbnail.jpg" alt="Thumbnail 2">
+          </div>
+          <div class="thumbnail" onclick="changeMainImage('images/image-product-3.jpg')">
+            <img src="images/image-product-3-thumbnail.jpg" alt="Thumbnail 3">
+          </div>
+          <div class="thumbnail" onclick="changeMainImage('images/image-product-4.jpg')">
+            <img src="images/image-product-4-thumbnail.jpg" alt="Thumbnail 4">
+          </div>
+          <div class="thumbnail" onclick="changeMainImage('images/image-product-5.jpg')">
+            <img src="images/image-product-5-thumbnail.jpg" alt="Thumbnail 5">
+          </div>
+          <div class="thumbnail" onclick="changeMainImage('images/image-product-6.jpg')">
+            <img src="images/image-product-6-thumbnail.jpg" alt="Thumbnail 6">
+          </div>
+        </div>
+      </div>
+      <div class="description">
+        <div class="sneaker-des">
+          <h4>SNEAKER COMPANY</h4>
+          <h2>Fall Limited Edition <br> Sneakers</h2> 
+          <br>
+          <span>This low-profile sneakers are your perfect casual wear <br> 
+          companion. Featuring a durable rubber outer sole, they'll <br> 
+          withstand everything the weather can offer.</span>
+        </div>
+        <div class="item">
+          <div class="total-price" id="totalPrice">
+            <div class="price-info">
+              <div class="discounted-price" id="discountPrice">$125.00</div>
+              <div class="discount">50%</div>
+            </div>
+            <div class="original-price" id="originalPrice">$250.00</div>
+          </div>
+          <div class="listitem">
+            <div class="quantity">
+              <button class="minus-btn" type="button" name="button" onclick="decrementQuantity()">
+                <img src="images/icon-minus.svg" alt="" />
+              </button>
+              <input id="quantityInput" type="text" name="name" value="1" readonly>
+              <button class="plus-btn" type="button" name="button" onclick="incrementQuantity()">
+                <img src="images/icon-plus.svg" alt="" />
+              </button>
+            </div>
+            <button class="add-to-cart-btn" type="button" onclick="addToCart()">
+              <img src="images/icon-cart.svg" alt="Cart Icon">
+              <span>Add to cart</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lightbox" onclick="closeLightbox()">
+      <span class="close-btn" onclick="closeLightbox()">&times;</span>
+      <button class="nav-btn prev-btn" onclick="showPreviousImage()"><img src="images/icon-previous.svg" alt="Previous"></button>
+      <button class="nav-btn next-btn" onclick="showNextImage()"><img src="images/icon-next.svg" alt="Next"></button>
+      <img class="lightbox-image" src="" alt="Lightbox Image">
+    </div>
+  </body>
+</html>
+
