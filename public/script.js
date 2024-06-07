@@ -1,13 +1,24 @@
-let currentImageIndex = 0;
 const imageSources = [
   'images/image-product-1.jpg',
   'images/image-product-2.jpg',
   'images/image-product-3.jpg',
-  'images/image-product-4.jpg'
+  'images/image-product-4.jpg',
+  'images/image-product-5.jpg',
+  'images/image-product-6.jpg',
+  'images/image-product-7.jpg',
+  'images/image-product-8.jpg',
+  'images/image-product-9.jpg',
+  'images/image-product-10.jpg',
+  'images/image-product-11.jpg',
+  'images/image-product-12.jpg',
+  'images/image-product-13.jpg',
+  'images/image-product-14.jpg',
+  'images/image-product-15.jpg',
+  'images/image-product-16.jpg'
 ];
 
-function changeMainImage(imageSrc) {
-  const mainImage = document.getElementById('mainImage');
+function changeMainImage(imageSrc, imageId) {
+  const mainImage = document.getElementById(imageId);
   mainImage.src = imageSrc;
 }
 
@@ -35,14 +46,14 @@ function updateTotalPrice(quantity) {
 
 const cartItems = []; // Array to store items in the cart
 
-function addToCart() {
+function addToCart(imageIndex) {
   const quantityInput = document.getElementById('quantityInput');
   const quantity = parseInt(quantityInput.value);
   const newItem = {
     name: "Fall Limited Edition Sneakers",
     price: 125.00,
     quantity: quantity,
-    imageSrc: imageSources[currentImageIndex]
+    imageSrc: imageSources[imageIndex] // Update to fetch image source dynamically
   };
   cartItems.push(newItem);
   updateCartIcon();
@@ -51,76 +62,29 @@ function addToCart() {
 
 function updateCartIcon() {
   const cartIcon = document.getElementById('cartIcon');
-  const cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-  cartIcon.style.setProperty('--after-content', `'${cartQuantity}'`);
+  if (cartItems.length > 0) {
+    cartIcon.classList.add('active');
+  } else {
+    cartIcon.classList.remove('active');
+  }
 }
 
 function updateCartContent() {
   const cartWrapper = document.querySelector('.cart-wrapper');
-  cartWrapper.innerHTML = '';
-
-  if (cartItems.length === 0) {
-    cartWrapper.textContent = 'Your cart is empty.';
-  } else {
-    let totalAmount = 0;
-    cartItems.forEach((item, index) => {
-      const cartItem = document.createElement('div');
-      cartItem.classList.add('cart-item');
-
-      const image = document.createElement('img');
-      image.src = item.imageSrc;
-
-      const details = document.createElement('div');
-      details.classList.add('details');
-
-      const name = document.createElement('p');
-      name.textContent = item.name;
-
-      const price = document.createElement('span');
-      price.classList.add('price');
-      price.textContent = '$' + item.price.toFixed(2);
-
-      const quantity = document.createElement('span');
-      quantity.classList.add('quantiti');
-      quantity.textContent = ' x ' + item.quantity;
-
-      const subtotal = document.createElement('span');
-      subtotal.classList.add('subtotal');
-      subtotal.textContent = '$' + (item.price * item.quantity).toFixed(2);
-
-      details.appendChild(name);
-      details.appendChild(price);
-      details.appendChild(document.createTextNode(' '));
-      details.appendChild(quantity);
-      details.appendChild(document.createTextNode(' '));
-      details.appendChild(subtotal);
-
-      const deleteBtn = document.createElement('div');
-      deleteBtn.classList.add('delete');
-      const deleteIcon = document.createElement('img');
-      deleteIcon.src = 'images/icon-delete.svg';
-      deleteIcon.addEventListener('click', () => removeCartItem(index));
-      deleteBtn.appendChild(deleteIcon);
-
-      cartItem.appendChild(image);
-      cartItem.appendChild(details);
-      cartItem.appendChild(deleteBtn);
-      cartWrapper.appendChild(cartItem);
-
-      totalAmount += item.price * item.quantity;
-    });
-
-    const totalElement = document.createElement('div');
-    totalElement.classList.add('total');
-    totalElement.textContent = 'Total: $' + totalAmount.toFixed(2);
-    cartWrapper.appendChild(totalElement);
-  }
-}
-
-function removeCartItem(index) {
-  cartItems.splice(index, 1);
-  updateCartIcon();
-  updateCartContent();
+  cartWrapper.innerHTML = ''; // Clear previous content
+  cartItems.forEach(item => {
+    const cartItem = document.createElement('div');
+    cartItem.classList.add('cart-item');
+    cartItem.innerHTML = `
+      <img src="${item.imageSrc}" alt="Sneakers">
+      <div class="item-info">
+        <h4>${item.name}</h4>
+        <p>Price: $${item.price.toFixed(2)}</p>
+        <p>Quantity: ${item.quantity}</p>
+      </div>
+    `;
+    cartWrapper.appendChild(cartItem);
+  });
 }
 
 function toggleCart() {
@@ -128,27 +92,36 @@ function toggleCart() {
   cartWindow.classList.toggle('hide');
 }
 
-let isLoggedIn = false;
-
-function toggleLogin() {
-  isLoggedIn = !isLoggedIn;
-  updateLoginStatus();
+function showLightbox(imageIndex) {
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxImage = document.querySelector('.lightbox-image');
+  lightboxImage.src = imageSources[imageIndex];
+  lightbox.style.display = 'flex';
 }
 
-function updateLoginStatus() {
-  let loginButton = document.querySelector('.login img');
-  if (isLoggedIn) {
-    loginButton.src = 'images/icon-logout.svg';
-    // Add logic here to handle logout actions
+function closeLightbox() {
+  const lightbox = document.querySelector('.lightbox');
+  lightbox.style.display = 'none';
+}
+
+function showPreviousImage() {
+  const lightboxImage = document.querySelector('.lightbox-image');
+  let currentIndex = imageSources.indexOf(lightboxImage.src);
+  if (currentIndex === -1 || currentIndex === 0) {
+    currentIndex = imageSources.length - 1;
   } else {
-    loginButton.src = 'images/image-avatar.png';
-    // Add logic here to handle login actions
+    currentIndex--;
   }
+  lightboxImage.src = imageSources[currentIndex];
 }
 
-document.querySelector('.login img').addEventListener('click', function() {
-  window.location.href = 'login.html';
-});
-
-
-
+function showNextImage() {
+  const lightboxImage = document.querySelector('.lightbox-image');
+  let currentIndex = imageSources.indexOf(lightboxImage.src);
+  if (currentIndex === -1 || currentIndex === imageSources.length - 1) {
+    currentIndex = 0;
+  } else {
+    currentIndex++;
+  }
+  lightboxImage.src = imageSources[currentIndex];
+}

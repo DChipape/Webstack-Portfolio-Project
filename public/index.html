@@ -1,111 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-commerce product page</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"/>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="script.js" defer></script>  
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-commerce product page</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"/>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script type="text/javascript" src="script.js" defer></script>  
+</head>
 
-  <body>
-    <header>
-      <div class="logo-nav">
-        <div class="logo" style="margin-right: 20px;">
-          <img src="images/logo.svg" alt="Sneakers logo">
-        </div>
-        <nav class="nav">
-          <ul>
-            <li><a href="#home">Collections</a></li>
-            <li><a href="#men">Men</a></li>
-            <li><a href="#women" class="active">Women</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+<body>
+  <header>
+    <div class="logo-nav">
+      <div class="logo" style="margin-right: 20px;">
+        <img src="images/logo.svg" alt="Sneakers logo">
       </div>
-      <div class="icons-login">
-        <div id="cartIcon" class="icons-login" onclick="toggleCart()">
-          <div class="cart-icon">
-            <div class="cart-icons"><img src="images/icon-cart.svg" alt="cart"></div>
-            <div class="whole-cart-window hide">
-              <h3>Cart</h3>
-              <div class="cart-wrapper">
-                <!-- Cart items will be dynamically generated here -->
-              </div>
-              <div class="checkout">Checkout</div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#home">Collections</a></li>
+          <li><a href="#men">Men</a></li>
+          <li><a href="#women" class="active">Women</a></li>
+          <li><a href=about.html>About</a></li>
+          <li><a href=contact.html>Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="icons-login">
+      <div id="cartIcon" class="icons-login" onclick="toggleCart()">
+        <div class="cart-icon">
+          <div class="cart-icons"><img src="images/icon-cart.svg" alt="cart"></div>
+          <div class="whole-cart-window hide">
+            <h3>Cart</h3>
+            <div class="cart-wrapper">
+              <!-- Cart items will be dynamically generated here -->
             </div>
-          </div>
-          <div class="login">
-            <a href="#login"><img src="images/image-avatar.png" alt="Login"></a>
+            <div class="checkout">Checkout</div>
           </div>
         </div>
+        <div class="login">
+          <a href="#login"><img src="images/image-avatar.png" alt="Login"></a>
+        </div>
       </div>
-    </header>
-    <hr>
-    <div class="container">
-      <div class="big-image">
+    </div>
+  </header>
+  <hr>
+  <div class="description">
+    <div class="sneaker-des">
+      <h4>SNEAKER COMPANY</h4>
+      <h2>Fall Limited Edition Sneakers</h2> 
+      <br>
+      <span>This low-profile sneakers are your perfect casual wear <br> 
+      companion. Featuring a durable rubber outer sole, they'll <br> 
+      withstand everything the weather can offer.</span>
+    </div>
+  </div>
+  <div class="container">
+    <ol class="image-list">
+      <li>
         <div class="image-content">
-          <img class="main-image" id="mainImage" src="images/image-product-1.jpg" alt="Sneakers" width="150">
+          <img class="main-image" id="mainImage1" src="images/image-product-1.jpg" alt="Sneakers" width="150">
         </div>
         <div class="thumbnails">
-          <div class="thumbnail" onclick="changeMainImage('images/image-product-1.jpg')">
-            <img src="images/image-product-1-thumbnail.jpg" alt="Thumbnail 1">
-          </div>
-          <div class="thumbnail" onclick="changeMainImage('images/image-product-2.jpg')">
-            <img src="images/image-product-2-thumbnail.jpg" alt="Thumbnail 2">
-          </div>
-          <div class="thumbnail" onclick="changeMainImage('images/image-product-3.jpg')">
-            <img src="images/image-product-3-thumbnail.jpg" alt="Thumbnail 3">
-          </div>
-          <div class="thumbnail" onclick="changeMainImage('images/image-product-4.jpg')">
-            <img src="images/image-product-4-thumbnail.jpg" alt="Thumbnail 4">
-          </div>
+          <!-- Thumbnails removed as requested -->
         </div>
-      </div>
-      <div class="description">
-        <div class="sneaker-des">
-          <h4>SNEAKER COMPANY</h4>
-          <h2>Fall Limited Edition <br> Sneakers</h2> 
-          <br>
-          <span>This low-profile sneakers are your perfect casual wear <br> 
-          companion. Featuring a durable rubber outer sole, they'll <br> 
-          withstand everything the weather can offer.</span>
-        </div>
-        <div class="item">
-          <div class="total-price" id="totalPrice">
-            <div class="price-info">
-              <div class="discounted-price" id="discountPrice">$125.00</div>
-              <div class="discount">50%</div>
+        <div class="description">
+            <div class="sneaker-des">
+             
+              <h2>Madaria Sneaker</h2>
             </div>
-            <div class="original-price" id="originalPrice">$250.00</div>
-          </div>
-          <div class="listitem">
-            <div class="quantity">
-              <button class="minus-btn" type="button" name="button" onclick="decrementQuantity()">
-                <img src="images/icon-minus.svg" alt="" />
-              </button>
-              <input id="quantityInput" type="text" name="name" value="1" readonly>
-              <button class="plus-btn" type="button" name="button" onclick="incrementQuantity()">
-                <img src="images/icon-plus.svg" alt="" />
-              </button>
+            <div class="item">
+              <div class="total-price" id="totalPrice">
+                <div class="price-info">
+                  <div class="discounted-price" id="discountPrice">$125.00</div>
+                  <div class="discount">50%</div>
+                </div>
+                <div class="original-price" id="originalPrice">$250.00</div>
+              </div>
+              <div class="listitem">
+                <div class="quantity">
+                  <button class="minus-btn" type="button" name="button" onclick="decrementQuantity()">
+                    <img src="images/icon-minus.svg" alt="" />
+                  </button>
+                  <input id="quantityInput" type="text" name="name" value="1" readonly>
+                  <button class="plus-btn" type="button" name="button" onclick="incrementQuantity()">
+                    <img src="images/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+                <button class="add-to-cart-btn" type="button" onclick="addToCart(0)"> <!-- Update to pass correct image index -->
+                  <img src="images/icon-cart.svg" alt="Cart Icon">
+                  <span>Add to cart</span>
+                </button>
+              </div>
             </div>
-            <button class="add-to-cart-btn" type="button" onclick="addToCart()">
-              <img src="images/icon-cart.svg" alt="Cart Icon">
-              <span>Add to cart</span>
-            </button>
           </div>
+      </li>
+      <li>
+        <div class="image-content">
+          <img class="main-image" id="mainImage1" src="images/image-product-2.jpg" alt="Sneakers" width="150">
         </div>
-      </div>
-    </div>
-    <div class="lightbox" onclick="closeLightbox()">
-      <span class="close-btn" onclick="closeLightbox()">&times;</span>
-      <button class="nav-btn prev-btn" onclick="showPreviousImage()"><img src="images/icon-previous.svg" alt="Previous"></button>
-      <button class="nav-btn next-btn" onclick="showNextImage()"><img src="images/icon-next.svg" alt="Next"></button>
-      <img class="lightbox-image" src="" alt="Lightbox Image">
-    </div>
-  </body>
+        <div class="thumbnails">
+          <!-- Thumbnails removed as requested -->
+        </div>
+        <div class="description">
+            <div class="sneaker-des">
+             
+              <h2>Madaria Sneaker</h2>
+            </div>
+            <div class="item">
+              <div class="total-price" id="totalPrice">
+                <div class="price-info">
+                  <div class="discounted-price" id="discountPrice">$125.00</div>
+                  <div class="discount">50%</div>
+                </div>
+                <div class="original-price" id="originalPrice">$250.00</div>
+              </div>
+              <div class="listitem">
+                <div class="quantity">
+                  <button class="minus-btn" type="button" name="button" onclick="decrementQuantity()">
+                    <img src="images/icon-minus.svg" alt="" />
+                  </button>
+                  <input id="quantityInput" type="text" name="name" value="1" readonly>
+                  <button class="plus-btn" type="button" name="button" onclick="incrementQuantity()">
+                    <img src="images/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+                <button class="add-to-cart-btn" type="button" onclick="addToCart(0)"> <!-- Update to pass correct image index -->
+                  <img src="images/icon-cart.svg" alt="Cart Icon">
+                  <span>Add to cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+      </li>
+      <li>
+        <div class="image-content">
+          <img class="main-image" id="mainImage1" src="images/image-product-3.jpg" alt="Sneakers" width="150">
+        </div>
+        <div class="thumbnails">
+          <!-- Thumbnails removed as requested -->
+        </div>
+        <div class="description">
+            <div class="sneaker-des">
+             
+              <h2>Madaria Sneaker</h2>
+            </div>
+            <div class="item">
+              <div class="total-price" id="totalPrice">
+                <div class="price-info">
+                  <div class="discounted-price" id="discountPrice">$125.00</div>
+                  <div class="discount">50%</div>
+                </div>
+                <div class="original-price" id="originalPrice">$250.00</div>
+              </div>
+              <div class="listitem">
+                <div class="quantity">
+                  <button class="minus-btn" type="button" name="button" onclick="decrementQuantity()">
+                    <img src="images/icon-minus.svg" alt="" />
+                  </button>
+                  <input id="quantityInput" type="text" name="name" value="1" readonly>
+                  <button class="plus-btn" type="button" name="button" onclick="incrementQuantity()">
+                    <img src="images/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+                <button class="add-to-cart-btn" type="button" onclick="addToCart(0)"> <!-- Update to pass correct image index -->
+                  <img src="images/icon-cart.svg" alt="Cart Icon">
+                  <span>Add to cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+      </li>
+      <li>
+        <div class="image-content">
+          <img class="main-image" id="mainImage1" src="images/image-product-4.jpg" alt="Sneakers" width="150">
+        </div>
+        <div class="thumbnails">
+          <!-- Thumbnails removed as requested -->
+        </div>
+        <div class="description">
+            <div class="sneaker-des">
+             
+              <h2>Madaria Sneaker</h2>
+            </div>
+            <div class="item">
+              <div class="total-price" id="totalPrice">
+                <div class="price-info">
+                  <div class="discounted-price" id="discountPrice">$125.00</div>
+                  <div class="discount">50%</div>
+                </div>
+                <div class="original-price" id="originalPrice">$250.00</div>
+              </div>
+              <div class="listitem">
+                <div class="quantity">
+                  <button class="minus-btn" type="button" name="button" onclick="decrementQuantity()">
+                    <img src="images/icon-minus.svg" alt="" />
+                  </button>
+                  <input id="quantityInput" type="text" name="name" value="1" readonly>
+                  <button class="plus-btn" type="button" name="button" onclick="incrementQuantity()">
+                    <img src="images/icon-plus.svg" alt="" />
+                  </button>
+                </div>
+                <button class="add-to-cart-btn" type="button" onclick="addToCart(0)"> <!-- Update to pass correct image index -->
+                  <img src="images/icon-cart.svg" alt="Cart Icon">
+                  <span>Add to cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+      </li>
+      <!-- Remaining list items removed for brevity -->
+    </ol>
+ 
+  </div>
+  <div class="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <button class="nav-btn prev-btn" onclick="showPreviousImage()"><img src="images/icon-previous.svg" alt="Previous"></button>
+    <button class="nav-btn next-btn" onclick="showNextImage()"><img src="images/icon-next.svg" alt="Next"></button>
+    <img class="lightbox-image" src="" alt="Lightbox Image">
+  </div>
+</body>
 </html>
-
-
